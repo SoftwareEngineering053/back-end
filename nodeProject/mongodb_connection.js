@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-
+mongodbUri="mongodb+srv://user:Mongolodb23@cluster0.ovfysad.mongodb.net/?retryWrites=true&w=majority";
 //connection to mongoose
 const mongooseConnect = () => {
     try{
         mongoose.set('strictQuery', true);
         mongoose.connect(
-            process.env.MONGODB_URI,
+            mongodbUri,
             { useNewUrlParser: true, useUnifiedTopology: true },
             (err) => {
                 if (err) return console.log("Error: ", err);

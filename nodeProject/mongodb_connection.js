@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongodbUri="mongodb+srv://user:Mongolodb23@cluster0.ovfysad.mongodb.net/?retryWrites=true&w=majority";
+
+const mongodbUri="mongodb+srv://IvanTonidandel:Mongolodb23@cluster0.zjvjpp7.mongodb.net/?retryWrites=true&w=majority"
 //connection to mongoose
 const mongooseConnect = () => {
     try{

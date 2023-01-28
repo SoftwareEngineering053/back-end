@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const { mongooseConnect } = require('./mongodb_connection');
-//const mongodbUri="mongodb+srv://user:Mongolodb23@cluster0.ovfysad.mongodb.net/?retryWrites=true&w=majority"
+
 
 const app = express();
 

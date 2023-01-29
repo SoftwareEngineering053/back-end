@@ -1,4 +1,4 @@
-
+const model = require('../models/courses');
 
 const newCourse = (req, res, next) => {
     //res.json({message: "new course posted"});

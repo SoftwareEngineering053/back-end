@@ -10,7 +10,7 @@ const app = express();
 const usersRoutes = require('./routes/users');
 const coursesRoutes = require('./routes/courses');
 app.use('/', usersRoutes);
-//app.use('/', coursesRoutes);
+app.use('/', coursesRoutes);
 
 
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = mongoose.model('Courses', new mongoose.Schema({
-    id: 'int',
+    id: 'number',
     titolo: 'string',
     abstract: 'string',
     docente: 'string',

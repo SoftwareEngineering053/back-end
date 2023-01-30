@@ -5,14 +5,14 @@ const { mongooseConnect } = require('./mongodb_connection');
 
 const app = express();
 
-
 //declaration of all routes
 const usersRoutes = require('./routes/users');
 const coursesRoutes = require('./routes/courses');
 app.use('/', usersRoutes);
 app.use('/', coursesRoutes);
 
-
+app.set("view engine", "ejs");
+app.set('views', "../../front-end/src/")
 
 //connect to mongoDB database
 mongooseConnect();
@@ -20,7 +20,7 @@ mongooseConnect();
 
 
 app.get('/', function (req, res) {
-    res.json({trial: 100});
+    res.render("index");
 });
 
 

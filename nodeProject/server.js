@@ -13,6 +13,7 @@ app.use('/', coursesRoutes);
 
 app.set("view engine", "ejs");
 app.set('views', "../../front-end/src/")
+app.use(express.static('../../front-end/src/'))
 
 //connect to mongoDB database
 mongooseConnect();

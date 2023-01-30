@@ -6,7 +6,7 @@ module.exports = mongoose.model('Courses', new mongoose.Schema({
     abstract: 'string',
     docente: 'string',
     studentiIscritti: [{
-        email: 'string',
+        unitnName: 'string',
     }]
 }));
 

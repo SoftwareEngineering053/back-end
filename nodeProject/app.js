@@ -7,6 +7,7 @@ const swaggerDocument=require('../swagger.json');
 console.log(process.env.DB_HOST);
 
 app.use(
+    '/api-docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerDocument)
 );

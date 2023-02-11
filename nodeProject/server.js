@@ -11,9 +11,13 @@ const appRoutes = require('./routes/app_routes');
 app.use('/api', apiRoutes);
 app.use('/', appRoutes);
 
+// view engine
 app.set("view engine", "ejs");
 app.set('views', "../../front-end/src/")
+
+// static paths
 app.use(express.static('../../front-end/src/'))
+app.use("/users", express.static('../../front-end/src/'))
 
 //connect to mongoDB database
 mongooseConnect();

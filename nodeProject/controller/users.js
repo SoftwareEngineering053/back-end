@@ -41,7 +41,7 @@ const allTeachers = async (req, res, next) => {
 }
 
 const usersByUnitnname = async (req, res, next) => {
-    result = await usermodel.usersByUnitnname()
+    result = await usermodel.usersByUnitnname(req.params.unitnname)
     res.status(200);
     res.json(result);
 }

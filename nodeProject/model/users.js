@@ -71,8 +71,8 @@ async function allTeachers () {
     return teachers;
 };
 
-async function usersByUnitnname () {    // TODO: farla come le altre
-    let result = await usermodel.find({unitnName: req.params.unitnname});
+async function usersByUnitnname (name) {
+    let result = await usermodel.find({unitnName: name});
     result = result.map((user) => {
         return {
             unitnName: user.unitnName,
@@ -81,7 +81,7 @@ async function usersByUnitnname () {    // TODO: farla come le altre
             role: user.role
         }
     });
-    res.status(200).json(result);
+    return result;
 };
 
 async function getRole (name) {

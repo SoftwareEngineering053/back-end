@@ -71,7 +71,7 @@ async function allTeachers () {
     return teachers;
 };
 
-async function usersByUnitnname () {
+async function usersByUnitnname () {    // TODO: farla come le altre
     let result = await usermodel.find({unitnName: req.params.unitnname});
     result = result.map((user) => {
         return {
@@ -84,11 +84,25 @@ async function usersByUnitnname () {
     res.status(200).json(result);
 };
 
+async function getRole (name) {
+    let result = await usermodel.find({unitnName: name});
+    result = result.map((user) => {
+        return {
+            role: user.role
+        }
+    });
+    if(result[0] == undefined)
+        return undefined
+    else
+        return result[0].role
+}
+
 module.exports = {
     usermodel,
     addUser,
     allUsers,
     allStudents,
     allTeachers,
-    usersByUnitnname
+    usersByUnitnname,
+    getRole
 };

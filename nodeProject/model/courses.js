@@ -5,9 +5,6 @@ coursemodel = mongoose.model('Courses', new mongoose.Schema({
     title: 'string',
     abstract: 'string',
     teacher: 'string',
-    studentiIscritti: [{
-        unitnName: 'string',
-    }]
 }));
 
 async function addCourse (title, abstract) {
@@ -18,7 +15,7 @@ async function addCourse (title, abstract) {
     coursemodel.create({
         title: title,
         abstract: abstract,
-        id: Math.floor(Math.random()*1000)    // TODO: mettere un auto increment
+        id: Math.floor(Math.random()*100000)    // TODO: mettere un auto increment
     }, function (err, user) {
         if (err){
             return -1;

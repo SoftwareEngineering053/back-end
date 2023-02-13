@@ -97,6 +97,7 @@ async function getRole (name) {
         return result[0].role
 }
 
+
 module.exports = {
     usermodel,
     addUser,

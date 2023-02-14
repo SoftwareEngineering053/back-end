@@ -1,14 +1,20 @@
+const { name } = require('ejs');
 const usermodel = require('../model/users');
 
+
+async function getDisplayName(unitnname){
+    names = await usermodel.usersByUnitnname(unitnname)
+    return names[0].firstname + " " + names[0].lastname
+}
 
 const userHome = async (req, res, next) => {
     role = await usermodel.getRole(req.params.unitnname)
 
     if(role == "teacher"){
-        res.render("home-docente");
+        res.render("home-docente", {username: await getDisplayName(req.params.unitnname)});
     }
     else if(role == "student"){
-        res.render("home-studente");
+        res.render("home-studente", {username: await getDisplayName(req.params.unitnname)});
     }
     else{
         res.status(501);

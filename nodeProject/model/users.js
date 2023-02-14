@@ -37,8 +37,8 @@ async function allUsers () {
     users = users.map((user) => {
         return {
             unitnName: user.unitnName,
-            name: user.firstname,
-            surname: user.lastname,
+            firstname: user.firstname,
+            lastname: user.lastname,
             role: user.role
         }
     });
@@ -50,8 +50,8 @@ async function allStudents () {
     students = students.map((student) => {
         return {
             unitnName: student.unitnName,
-            name: student.firstname,
-            surname: student.lastname,
+            firstname: student.firstname,
+            lastname: student.lastname,
             // role: user.role
         }
     });
@@ -63,8 +63,8 @@ async function allTeachers () {
     teachers = teachers.map((teacher) => {
         return {
             unitnName: teacher.unitnName,
-            name: teacher.firstname,
-            surname: teacher.lastname,
+            firstname: teacher.firstname,
+            lastname: teacher.lastname,
             // role: user.role
         }
     });
@@ -76,8 +76,8 @@ async function usersByUnitnname (name) {
     result = result.map((user) => {
         return {
             unitnName: user.unitnName,
-            name: user.firstname,
-            surname: user.lastname,
+            firstname: user.firstname,
+            lastname: user.lastname,
             role: user.role
         }
     });

@@ -1,5 +1,6 @@
 const { name } = require('ejs');
 const usermodel = require('../model/users');
+const subsmodel = require('../model/subscriptions');
 
 
 async function getDisplayName(unitnname){
@@ -8,13 +9,18 @@ async function getDisplayName(unitnname){
 }
 
 const userHome = async (req, res, next) => {
-    role = await usermodel.getRole(req.params.unitnname)
+    username = req.params.unitnname
+    role = await usermodel.getRole(username)
 
     if(role == "teacher"){
-        res.render("home-docente", {username: await getDisplayName(req.params.unitnname)});
+        displayName = await getDisplayName(username)
+        subs = await subsmodel.getCoursesByTeacherName(username)
+        res.render("home-docente", {username: displayName, courses: subs});
     }
     else if(role == "student"){
-        res.render("home-studente", {username: await getDisplayName(req.params.unitnname)});
+        displayName = await getDisplayName(username)
+        subs = await subsmodel.getCoursesByStudentName(username)
+        res.render("home-studente", {username: displayName, courses: subs});
     }
     else{
         res.status(501);

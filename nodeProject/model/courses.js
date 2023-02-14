@@ -38,8 +38,9 @@ async function allCourses () {
     return courses;
 };
 
+/*
 async function coursesById (id) {
-    let result = await coursemodel.find({_id: id});
+    let result = await coursemodel.findById(id);
     result = result.map((course) => {
         return {
             titolo: course.title,
@@ -49,6 +50,7 @@ async function coursesById (id) {
     });
     return result;
 }
+*/
 
 
-module.exports = { coursemodel, addCourse, allCourses, coursesById };
+module.exports = { coursemodel, addCourse, allCourses /*, coursesById*/ };

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 coursemodel = mongoose.model('Courses', new mongoose.Schema({
-    id: 'Number',
+    _id: 'ObjectId',
     title: 'string',
     abstract: 'string',
     teacher: 'string',
@@ -15,7 +15,7 @@ async function addCourse (title, abstract) {
     coursemodel.create({
         title: title,
         abstract: abstract,
-        id: Math.floor(Math.random()*100000)    // TODO: mettere un auto increment
+        // id: Math.floor(Math.random()*100000)    // TODO: mettere un auto increment
     }, function (err, user) {
         if (err){
             return -1;
@@ -39,7 +39,7 @@ async function allCourses () {
 };
 
 async function coursesById (id) {
-    let result = await coursemodel.find({id: id});
+    let result = await coursemodel.find({_id: id});
     result = result.map((course) => {
         return {
             titolo: course.title,
@@ -51,7 +51,4 @@ async function coursesById (id) {
 }
 
 
-//const addSubscriber
-
-
-module.exports = { coursemodel, addCourse, allCourses, coursesById /*, addSubscriber */};
+module.exports = { coursemodel, addCourse, allCourses, coursesById };

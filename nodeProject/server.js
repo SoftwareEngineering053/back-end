@@ -1,6 +1,8 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const { mongooseConnect } = require('./mongodb_connection');
+const swaggerUI = require("swagger-ui-express")
+const swaggerDoc = require("./docs/swagger.json")
 
 
 const app = express();
@@ -8,6 +10,7 @@ const app = express();
 //declaration of all routes
 const apiRoutes = require('./routes/api_routes');
 const appRoutes = require('./routes/app_routes');
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 app.use('/api', apiRoutes);
 app.use('/', appRoutes);
 

@@ -1,26 +1,39 @@
 const mongoose = require('mongoose');
 
 coursemodel = mongoose.model('Courses', new mongoose.Schema({
-    _id: 'ObjectId',
     title: 'string',
     abstract: 'string',
     teacher: 'string',
 }));
 
-async function addCourse (title, abstract) {
-    // Aggiunge un corso con titolo e abstract specificati
-    // ritorna 0 in caso tutto sia andato a buon fine
+async function addCourse (title, abstract, teacher) {
+    // Aggiunge un corso con titolo, abstract, ed insegnante specificati
+    // ritorna 0 in caso l'operazione sia andata a buon fine
     // -1 in caso di errore
 
-    coursemodel.create({
+    const course = new coursemodel({
         title: title,
         abstract: abstract,
-        // id: Math.floor(Math.random()*100000)    // TODO: mettere un auto increment
+        teacher: teacher
+    });
+    course.save((err, data) => {
+        if(err){
+            return -1
+        }
+    })
+    /*
+    coursemodel.create({
+        // per creare un nuovo oggetto devo mettere TUTTI i campi
+        // oppure _id posso non metterlo e mongodb lo aggiunge da solo?
+        title: title,
+        abstract: abstract,
+        teacher: teacher
     }, function (err, user) {
         if (err){
             return -1;
         }
     })
+    */
     return 0;
 };
 
@@ -32,25 +45,10 @@ async function allCourses () {
             titolo: course.title,
             abstract: course.abstract,
             docente: course.teacher,
-            // studentiIscritti: course.studentiIscritti
         }
     });
     return courses;
 };
 
-/*
-async function coursesById (id) {
-    let result = await coursemodel.findById(id);
-    result = result.map((course) => {
-        return {
-            titolo: course.title,
-            abstract: course.abstract,
-            docente: course.teacher,
-        }
-    });
-    return result;
-}
-*/
 
-
-module.exports = { coursemodel, addCourse, allCourses /*, coursesById*/ };
+module.exports = { coursemodel, addCourse, allCourses };

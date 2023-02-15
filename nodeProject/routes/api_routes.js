@@ -5,7 +5,7 @@ const userctr = require('../controller/users');
 
 
 router.get('/courses', coursesctr.allCourses);
-router.post('/courses', coursesctr.addCourse);
+router.post('/courses/new/:title/:abstract/:teacher', coursesctr.addCourse);
 router.post('/users/new/:role/:unitnname', userctr.addUser);
 router.get('/users', userctr.allUsers);
 router.get('/users/students', userctr.allStudents);

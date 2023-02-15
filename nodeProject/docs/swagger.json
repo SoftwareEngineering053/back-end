@@ -21,10 +21,10 @@
 	"produces": ["application/json"],
 
     "paths": {
-        "/api/users/courses": {
+        "/api/courses": {
             "get": {
                 "tags": [
-                    "Courses"
+                    "Course"
                 ],
                 "summary": "restituisce tutti i corsi nel sistema",
                 "responses": {
@@ -35,12 +35,37 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/api/courses/new/:title/:abstract/:teacher": {
             "post": {
                 "tags": [
-                    "Courses"
+                    "Course"
                 ],
                 "summary": "aggiunge un nuovo corso al sistema",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Title of the course to add",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "abstract",
+                        "in": "path",
+                        "description": "Abstract of the course to add",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "teacher",
+                        "in": "path",
+                        "description": "Username of the teacher that teaches the course",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -49,11 +74,27 @@
             }
         },
         "/api/users/new/:role/:unitnname": {
-            "get": {
+            "post": {
                 "tags": [
-                    "Courses"
+                    "User"
                 ],
                 "summary": "aggiunge un nuovo utente al sistema con un particolare ruolo",
+                "parameters": [
+                    {
+                      "name": "role",
+                      "in": "path",
+                      "description": "role of the user to add",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "username",
+                      "in": "path",
+                      "description": "Username of the user to add, in the form firstname.lastname(-n) n=1,2...",
+                      "required": true,
+                      "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -155,21 +196,21 @@
                 }
             }
         },
-        "Subscritpion": {
+        "Course": {
             "required": [
-                "_id",
-                "student",
-                "id"
+                "title",
+                "abstract",
+                "teacher"
             ],
             "properties": {
-                "_id": {
-                    "type": "ObjectId"
+                "title": {
+                    "type": "string"
                 },
-                "student": {
-                    "type": "String"
+                "abstract": {
+                    "type": "string"
                 },
-                "id": {
-                    "type": "ObjectId"
+                "teacher": {
+                    "type": "string"
                 }
             }
         }

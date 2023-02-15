@@ -54,8 +54,14 @@ const allTeachers = async (req, res, next) => {
 
 const usersByUnitnname = async (req, res, next) => {
     result = await usermodel.usersByUnitnname(req.params.unitnname)
-    res.status(200);
-    res.json(result);
+    if(result.length == 0){
+        res.status(404);
+        res.send();
+    }
+    else{
+        res.status(200);
+        res.json(result);
+    }
 }
 
 module.exports = {

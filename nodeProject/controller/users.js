@@ -23,15 +23,14 @@ const userHome = async (req, res, next) => {
         res.render("home-studente", {username: displayName, courses: subs});
     }
     else{
-        res.status(501);
+        res.status(404);
         res.send("Utente non trovato");
     }
 }
 
 const addUser = async (req, res, next) => {
     result = await usermodel.addUser(req.params.unitnname)
-    res.status(200);
-    res.send(result);
+    res.sendStatus(result == 0 ? 200 : 400);
 }
 
 const allUsers = async (req, res, next) => {

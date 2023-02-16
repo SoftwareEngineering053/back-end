@@ -1,0 +1,218 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title":"",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host":"localhost:3000",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "User",
+			"description": "API per gli utenti nel sistema"
+		}
+	],
+	"schemes": ["https"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+
+    "paths": {
+        "/api/courses": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "restituisce tutti i corsi nel sistema",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Course"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/courses/new/:title/:abstract/:teacher": {
+            "post": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "aggiunge un nuovo corso al sistema",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Title of the course to add",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "abstract",
+                        "in": "path",
+                        "description": "Abstract of the course to add",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "teacher",
+                        "in": "path",
+                        "description": "Username of the teacher that teaches the course",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/users/new/:role/:unitnname": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "aggiunge un nuovo utente al sistema con un particolare ruolo",
+                "parameters": [
+                    {
+                      "name": "role",
+                      "in": "path",
+                      "description": "role of the user to add",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "username",
+                      "in": "path",
+                      "description": "Username of the user to add, in the form firstname.lastname(-n) n=1,2...",
+                      "required": true,
+                      "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Course"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "ritorna tutti gli utenti registrati",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/students": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "ritorna tutti gli studenti registrati",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/teachers": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "ritorna tutti gli insegnanti registrati",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/:unitnname": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "cerca l'utente con il nome specificato all'interno del sistema",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "unitnname",
+                "firstname",
+                "lastname",
+                "role"
+            ],
+            "properties": {
+                "unitnname": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "Course": {
+            "required": [
+                "title",
+                "abstract",
+                "teacher"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "abstract": {
+                    "type": "string"
+                },
+                "teacher": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

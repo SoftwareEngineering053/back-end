@@ -1,33 +1,30 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const { mongooseConnect } = require('./mongodb_connection');
+const swaggerUI = require("swagger-ui-express")
+const swaggerDoc = require("./docs/swagger.json")
 
 
 const app = express();
 
-
 //declaration of all routes
-const usersRoutes = require('./routes/users');
-const coursesRoutes = require('./routes/courses');
-app.use('/', usersRoutes);
-app.use('/', coursesRoutes);
+const apiRoutes = require('./routes/api_routes');
+const appRoutes = require('./routes/app_routes');
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
+app.use('/api', apiRoutes);
+app.use('/', appRoutes);
 
+// view engine
+app.set("view engine", "ejs");
+app.set('views', process.env.STATIC_PATH)
 
+// static paths
+app.use(express.static(process.env.STATIC_PATH))
+app.use("/users", express.static(process.env.STATIC_PATH))
 
 //connect to mongoDB database
 mongooseConnect();
 
-
-
-app.get('/', function (req, res) {
-    res.json({trial: 100});
-});
-
-
-
-/*app.get("/", function (req, res) {
-    res.send(req.headers, req.originalUrl, req.method, req.body);
-});*/
 
 const listener = app.listen(process.env.PORT || 3000, () => { //defines the listener object that 'catches' the front-end requests
     console.log('Listening requests on port ' + listener.address().port)

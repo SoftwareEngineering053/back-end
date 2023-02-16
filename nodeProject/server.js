@@ -10,7 +10,7 @@ const app = express();
 //declaration of all routes
 const apiRoutes = require('./routes/api_routes');
 const appRoutes = require('./routes/app_routes');
-app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 app.use('/api', apiRoutes);
 app.use('/', appRoutes);
 
